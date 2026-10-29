@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, maximum-scale=1.0">
+  <title>Dramatic Pasta Timer 🤌⏱️ | Strategic Carbohydrate Launch Facility</title>
+  <meta name="description" content="A nuclear launch control room dedicated entirely to boiling pasta to flawless al dente perfection. Complete with procedural opera stabs, bubbling reactor physics, and emergency sirens.">
+
+  <!-- Custom Inline SVG Favicon (Pasta Pot + Nuclear Trefoil) -->
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%230f1118'/%3E%3Ccircle cx='32' cy='34' r='24' fill='%231f2430' stroke='%23f59e0b' stroke-width='2'/%3E%3Cpath d='M20 22 C24 16, 40 16, 44 22 C48 30, 48 44, 44 48 C40 52, 24 52, 20 48 Z' fill='%23fbbf24' opacity='0.9'/%3E%3Ccircle cx='32' cy='35' r='5' fill='%23ef4444'/%3E%3Cpath d='M32 16 L32 23 M18 42 L24 38 M46 42 L40 38' stroke='%23ef4444' stroke-width='3' stroke-linecap='round'/%3E%3Ctext x='19' y='39' font-size='16'%3E🤌%3C/text%3E%3C/svg%3E">
+
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <!-- Ambient Hazard Flasher Overlay -->
+  <div id="alarm-overlay" class="alarm-overlay" aria-hidden="true"></div>
+
+  <!-- Main Bunker Container -->
+  <div class="facility-wrap">
+    
+    <!-- TOP TACTICAL HUD -->
+    <header class="tactical-hud">
+      <div class="hud-left">
+        <div class="defcon-badge defcon-normal" id="defcon-indicator">
+          <span class="defcon-light"></span>
+          <span class="defcon-text" id="defcon-text">DEFCON CARB: READY</span>
+        </div>
+        <div class="hud-stat">
+          <span class="label">WATER REACTOR:</span>
+          <span class="val text-amber" id="hud-temp">100.2 °C (ROLLING)</span>
+        </div>
+        <div class="hud-stat mobile-hide">
+          <span class="label">SALINITY:</span>
+          <span class="val text-cyan" id="hud-salinity">3.5% (MEDITERRANEAN)</span>
+        </div>
+      </div>
+
+      <div class="hud-center">
+        <h1 class="tactical-title">
+          <span class="flag-stripe it-green"></span>
+          <span class="flag-stripe it-white"></span>
+          <span class="flag-stripe it-red"></span>
+          DRAMATIC PASTA TIMER
+          <span class="sub-brand">MILITARY-SPEC CARBOHYDRATE COMMAND</span>
+        </h1>
+      </div>
+
+      <div class="hud-right">
+        <button id="btn-drill-mode" class="hud-btn drill-btn" title="Toggle 10-Second Warp Test [D]">
+          <span class="icon">⏩</span> <span id="drill-label">10s DRILL MODE</span>
+        </button>
+        <button id="btn-sound" class="hud-btn" title="Toggle Sound [M]" aria-label="Toggle Sound">
+          <span id="sound-icon">🔊</span> <span id="sound-label">SOUND ON</span>
+        </button>
+      </div>
+    </header>
+
+    <!-- MAIN CONSOLE GRID -->
+    <main class="console-grid">
+
+      <!-- COLUMN 1: PAYLOAD SILO (PASTA SELECTOR) -->
+      <section class="panel silo-panel" aria-labelledby="silo-title">
+        <div class="panel-header">
+          <span class="panel-num">01</span>
+          <h2 id="silo-title">SELECT CARBOHYDRATE PAYLOAD</h2>
+          <span class="panel-badge">ORDNANCE</span>
+        </div>
+
+        <div class="pasta-silo-grid" id="pasta-grid">
+          <!-- Pasta Option Cards -->
+          <button class="pasta-card active" data-slug="spaghetti" data-time="540" data-name="Spaghetti No. 5" data-sub="Ballistic Long-Strand • 9m">
+            <div class="card-icon">🍝</div>
+            <div class="card-info">
+              <span class="card-name">Spaghetti No. 5</span>
+              <span class="card-desc">Ballistic Long-Strand</span>
+            </div>
+            <div class="card-time">09:00</div>
+          </button>
+
+          <button class="pasta-card" data-slug="penne" data-time="660" data-name="Penne Rigate" data-sub="Kinetic Tubular Penetrator • 11m">
+            <div class="card-icon">🪶</div>
+            <div class="card-info">
+              <span class="card-name">Penne Rigate</span>
+              <span class="card-desc">Kinetic Tubular Penetrator</span>
+            </div>
+            <div class="card-time">11:00</div>
+          </button>
+
+          <button class="pasta-card" data-slug="farfalle" data-time="720" data-name="Farfalle Bowties" data-sub="Aerodynamic Butterfly Wing • 12m">
+            <div class="card-icon">🦋</div>
+            <div class="card-info">
+              <span class="card-name">Farfalle (Bowties)</span>
+              <span class="card-desc">Aerodynamic Butterfly Wing</span>
+            </div>
+            <div class="card-time">12:00</div>
+          </button>
+
+          <button class="pasta-card" data-slug="rigatoni" data-time="780" data-name="Rigatoni Armor" data-sub="Heavy-Bore Ribbed Cylinder • 13m">
+            <div class="card-icon">🥖</div>
+            <div class="card-info">
+              <span class="card-name">Rigatoni Heavy</span>
+              <span class="card-desc">Heavy-Bore Ribbed Cylinder</span>
+            </div>
+            <div class="card-time">13:00</div>
+          </button>
+
+          <button class="pasta-card" data-slug="capellini" data-time="180" data-name="Angel Hair (Capellini)" data-sub="Hypersonic Hair-Trigger • 3m">
+            <div class="card-icon">🍜</div>
+            <div class="card-info">
+              <span class="card-name">Angel Hair (Capellini)</span>
+              <span class="card-desc">Hypersonic Hair-Trigger</span>
+            </div>
+            <div class="card-time">03:00</div>
+          </button>
+
+          <button class="pasta-card" data-slug="tortellini" data-time="240" data-name="Stuffed Tortellini" data-sub="Ricotta-Filled High Explosive • 4m">
+            <div class="card-icon">🥟</div>
+            <div class="card-info">
+              <span class="card-name">Tortellini Ordnance</span>
+              <span class="card-desc">Ricotta High Explosive</span>
+            </div>
+            <div class="card-time">04:00</div>
+          </button>
+        </div>
+
+        <!-- Custom Manual Calibrator -->
+        <div class="custom-timer-box">
+          <div class="custom-header">
+            <span>CUSTOM TARGET CALIBRATION:</span>
+            <span class="custom-val-display" id="custom-minutes-display">9m 00s</span>
+          </div>
+          <div class="slider-row">
+            <input type="range" id="custom-time-slider" min="60" max="1800" step="30" value="540" aria-label="Custom boil duration">
+          </div>
+        </div>
+
+        <!-- Live Payload Specs -->
+        <div class="payload-specs">
+          <div class="spec-row">
+            <span class="spec-k">TARGET STATUS:</span>
+            <span class="spec-v highlight" id="spec-target-name">Spaghetti No. 5</span>
+          </div>
+          <div class="spec-row">
+            <span class="spec-k">TARGET AL DENTE WINDOW:</span>
+            <span class="spec-v text-amber" id="spec-window-time">T-Minus 00:45</span>
+          </div>
+          <div class="spec-row">
+            <span class="spec-k">DANGER LEVEL:</span>
+            <span class="spec-v text-red">MUSHY FLACCIDITY RISK EXTREME</span>
+          </div>
+        </div>
+      </section>
+
+      <!-- COLUMN 2: HYDROTHERMAL BOILING REACTOR (SIMULATION CANVAS) -->
+      <section class="panel reactor-panel" aria-labelledby="reactor-title">
+        <div class="panel-header">
+          <span class="panel-num">02</span>
+          <h2 id="reactor-title">HYDROTHERMAL CORE CHAMBER</h2>
+          <span class="live-pill"><span class="blink-dot"></span> LIVE TELEMETRY</span>
+        </div>
+
+        <div class="reactor-viewport">
+          <!-- Canvas with dynamic boiling water, steam bubbles, convective currents -->
+          <canvas id="reactor-canvas" width="600" height="420"></canvas>
+          
+          <!-- Wooden Spoon Overlay (Toggled via defense switch) -->
+          <div id="spoon-overlay" class="spoon-overlay hidden">
+            <div class="wooden-spoon-bar"></div>
+            <div class="spoon-label">NONNA'S SPOON ACTIVE: FOAM SUPPRESSION ON</div>
+          </div>
+
+          <!-- Reactor Overlay Heads-Up Telemetry -->
+          <div class="reactor-telemetry-hud">
+            <div class="dial-card">
+              <div class="dial-name">CONVECTION</div>
+              <div class="dial-value" id="telemetry-convection">380 W/m²</div>
+            </div>
+            <div class="dial-card">
+              <div class="dial-name">STARCH MATRIX</div>
+              <div class="dial-value text-amber" id="telemetry-starch">0.0% GEL</div>
+            </div>
+            <div class="dial-card">
+              <div class="dial-name">BUBBLE RATE</div>
+              <div class="dial-value text-cyan" id="telemetry-bubbles">IDLE</div>
+            </div>
+          </div>
+
+          <!-- Big Floating Al Dente Countdown Message on Canvas -->
+          <div id="reactor-status-banner" class="reactor-status-banner">
+            <span id="reactor-status-text">REACTOR AWAITING IGNITION COMMAND</span>
+          </div>
+        </div>
+
+        <!-- Reactor Thermocline Progress Bar -->
+        <div class="thermocline-bar-wrap">
+          <div class="thermocline-meta">
+            <span>PROTEIN COAGULATION TRAJECTORY:</span>
+            <span id="cook-percent">0%</span>
+          </div>
+          <div class="thermocline-track">
+            <div class="thermocline-fill" id="thermocline-fill"></div>
+            <div class="al-dente-marker" title="Al Dente Window Marker"><span>AL DENTE</span></div>
+          </div>
+        </div>
+      </section>
+
+      <!-- COLUMN 3: LAUNCH CONSOLE & COUNTDOWN DISPLAY -->
+      <section class="panel launch-panel" aria-labelledby="launch-title">
+        <div class="panel-header">
+          <span class="panel-num">03</span>
+          <h2 id="launch-title">MISSION CONTROL CONSOLE</h2>
+          <span class="panel-badge alert-badge" id="mission-status-badge">ARMED</span>
+        </div>
+
+        <!-- SEVEN SEGMENT DIGITAL COUNTDOWN DISPLAY -->
+        <div class="timer-display-box" id="timer-display-box">
+          <div class="display-glare"></div>
+          <div class="timer-tagline">T-MINUS UNTIL DRAIN PROTOCOL</div>
+          <div class="digital-clock" id="clock-display">09:00<span class="clock-ms">.0</span></div>
+          <div class="clock-state-banner" id="clock-state-banner">STANDBY: READY TO DROP PASTA</div>
+        </div>
+
+        <!-- PRE-FLIGHT INTERLOCK SWITCHES -->
+        <div class="interlocks-bar">
+          <div class="interlock-switch">
+            <label class="switch-ui">
+              <input type="checkbox" id="switch-salt" checked>
+              <span class="slider round"></span>
+            </label>
+            <div class="switch-label">
+              <span class="sw-title">SALT CONFIRMED</span>
+              <span class="sw-sub">Salty as Mediterranean</span>
+            </div>
+          </div>
+
+          <div class="interlock-switch">
+            <label class="switch-ui">
+              <input type="checkbox" id="switch-boil" checked>
+              <span class="slider round"></span>
+            </label>
+            <div class="switch-label">
+              <span class="sw-title">BOIL CONFIRMED</span>
+              <span class="sw-sub">Violent rolling bubbles</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- BIG RED LAUNCH / DRAIN TRIGGER BUTTON -->
+        <div class="launch-trigger-zone">
+          <!-- The Covered Safety Button -->
+          <div class="safety-cover-cage" id="safety-cover-cage">
+            <button class="safety-cover-btn" id="btn-flip-cover" title="Flip Open Safety Interlock">
+              <span class="stripes"></span>
+              <span class="cover-text" id="cover-text">⚠️ FLIP SAFETY COVER ⚠️</span>
+              <span class="stripes"></span>
+            </button>
+
+            <button class="big-red-button" id="btn-main-action" disabled>
+              <div class="red-button-shine"></div>
+              <span class="launch-icon" id="launch-icon">🚀</span>
+              <span class="launch-text" id="launch-text">IGNITE BOIL SEQUENCE</span>
+              <span class="launch-sub" id="launch-sub">DROP PASTA INTO THE ABYSS</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- SECONDARY COMMAND CONTROLS -->
+        <div class="secondary-controls">
+          <button id="btn-pause" class="sub-ctrl-btn" disabled>
+            <span>⏸️</span> <span id="pause-label">PAUSE CLOCK</span>
+          </button>
+          <button id="btn-reset" class="sub-ctrl-btn">
+            <span>🔄</span> <span>RESET SILO</span>
+          </button>
+          <button id="btn-drain-test" class="sub-ctrl-btn alert-sub-btn">
+            <span>🚰</span> <span>EMERGENCY DRAIN</span>
+          </button>
+        </div>
+
+        <!-- DEFENSE / EASTER EGG CONSOLE -->
+        <div class="defense-console">
+          <div class="defense-title">NONNA STRATEGIC DEFENSE PROTOCOLS:</div>
+          <div class="defense-buttons">
+            <button class="def-btn danger-def" id="btn-snap-pasta" title="Snap Spaghetti In Half (Strictly Prohibited!)">
+              <span class="def-icon">⚠️</span>
+              <span class="def-label">SNAP PASTA IN HALF</span>
+            </button>
+
+            <button class="def-btn danger-def" id="btn-oil-water" title="Pour Olive Oil Into Water">
+              <span class="def-icon">🫒</span>
+              <span class="def-label">ADD OLIVE OIL</span>
+            </button>
+
+            <button class="def-btn safe-def" id="btn-wooden-spoon" title="Lay Wooden Spoon Across Pot">
+              <span class="def-icon">🥄</span>
+              <span class="def-label">NONNA'S SPOON</span>
+            </button>
+
+            <button class="def-btn gesture-def" id="btn-che-cazzo" title="Che Cazzo Expressive Gesture">
+              <span class="def-icon">🤌</span>
+              <span class="def-label">CHE VUOI?!</span>
+            </button>
+          </div>
+        </div>
+      </section>
+
+    </main>
+
+    <!-- LIVE TELETYPE TERMINAL LOG -->
+    <footer class="tactical-footer">
+      <div class="terminal-box">
+        <span class="term-lead">[DEFCON-LOG]</span>
+        <span class="term-line" id="term-line">System initialized. Awaiting carbohydrate payload authorization...</span>
+      </div>
+      <div class="shortcuts-legend">
+        <span><kbd>Space</kbd> Start/Pause</span>
+        <span><kbd>D</kbd> 10s Drill Mode</span>
+        <span><kbd>M</kbd> Mute</span>
+        <span><kbd>R</kbd> Reset</span>
+        <span><kbd>N</kbd> Nonna Spoon</span>
+      </div>
+    </footer>
+
+  </div>
+
+  <!-- EMERGENCY AL DENTE VICTORY / CRISIS MODAL -->
+  <div id="aldente-modal" class="modal-backdrop hidden" role="dialog" aria-modal="true">
+    <div class="modal-card">
+      <div class="modal-glow"></div>
+      <div class="modal-badge">CRITICAL MILESTONE REACHED</div>
+      <h2 class="modal-title">🚨 AL DENTE REACHED! 🚨</h2>
+      <p class="modal-msg">THE CORE IS AT OPTIMAL TENSILE FIRMNESS. DRAIN THE WATER NOW OR FACE MUSHY OBLIVION.</p>
+      
+      <div class="commandment-list">
+        <div class="cmd-item">✅ <strong>SAVE 1 CUP OF STARCHY PASTA WATER</strong> for the emulsion!</div>
+        <div class="cmd-item">❌ <strong>NEVER RINSE WITH COLD TAP WATER</strong> unless you desire Nonna's eternal wrath!</div>
+        <div class="cmd-item">🍝 <strong>TOSS DIRECTLY INTO PAN OF WARM SAUCE</strong> for 60 seconds!</div>
+      </div>
+
+      <div class="modal-actions">
+        <button id="modal-btn-drain" class="modal-btn drain-btn">
+          <span>🚰 DRAIN WATER & CLAIM CULINARY TRIUMPH</span>
+        </button>
+        <button id="modal-btn-dismiss" class="modal-btn secondary-modal-btn">
+          <span>DISMISS ALARM (I LIKE IT OVERCOOKED 💀)</span>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- FLOATING ABSURD GESTURE EMOJI CONTAINER -->
+  <div id="gesture-layer" class="gesture-layer" aria-hidden="true"></div>
+
+  <!-- SCRIPTS -->
+  <script src="app.js"></script>
+
+<script>window.__BORED_AI_SLUG__="dramatic-pasta-timer";</script>
+<script src="report-widget.js"></script>
+</body>
+</html>
